@@ -21,7 +21,8 @@ const WelcomeScreen = () => {
               SURE <span role="img" aria-label="smile">😊</span> <span className="arrow">➔</span>
             </button>
             <div className="Login">
-              Already have an account? Login
+             <h5> Already have an account? <span className="span">
+              Login</span></h5> 
               </div>
           </div>
         )}
@@ -32,7 +33,8 @@ const WelcomeScreen = () => {
         style={{
           flex: 1,
           height: '100%',
-          backgroundImage: `linear-gradient(to bottom right, rgba(225, 0, 255, 0.4), rgba(233, 201, 241, 0.4)), url('/Images/drimageee.jpg')`,
+          backgroundImage: `url('/Images/nurse.png')`,
+
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

@@ -7,11 +7,11 @@ export default function PatientDetails() {
   useEffect(() => {
     fetchData();
   }, []);
-
+ const token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYXJsZWVua2F1cjY1QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfRE9DVE9SIl0sImlhdCI6MTc0ODAwOTAyNX0.pjgc3GWeZRCbG3clFg2sLar3XopNrJnvjeH2Abv6V-M"
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://70d2-2409-40d1-88-a191-c868-551-4f84-87b0.ngrok-free.app/api/appointments/doctor/8/pending",
+        "https://767e-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/pending",
         {
           method: "GET",
           headers: {
@@ -36,6 +36,55 @@ export default function PatientDetails() {
 
   if (!dataSent || dataSent.length === 0) {
     return <div>No pending patient data found.</div>;
+  }
+   const approve=async(id)=>
+   {
+    try {
+      const response = await fetch(`https://767e-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/confirm/${id}`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,  // <-- Add this line
+          "Content-Type": "application/json", // If sending JSON data (optional here if no body)
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log(result)
+   
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to submit registration. Please try again.");
+    }
+  };
+  const done=async(id)=>
+  {
+try {
+    const response = await fetch(
+      `https://767e-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/done/${id}?isDone=true`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,  // <-- Add this line
+          "Content-Type": "application/json", // If sending JSON data (optional here if no body)
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result);
+    alert("Appointment approved!");
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Failed to submit registration. Please try again.");
+  }
   }
 
   return (
@@ -69,9 +118,10 @@ export default function PatientDetails() {
           </div>
 
           <div className="action-buttons">
-            <button className="approve-btn">Approve</button>
-            <button className="disapprove-btn">Disapprove</button>
-            <button className="done-btn">Checked</button>
+           <button className="approve-btn" onClick={()=>approve(patient.id)}>Approve</button>
+
+            <button className="disapprove-btn" >Disapprove</button>
+            <button className="done-btn" onClick={()=>done(patient.id)}>Checked</button>
           </div>
         </div>
       ))}

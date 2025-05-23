@@ -435,6 +435,20 @@ export default function DoctorRegistrationForm() {
       {step === 9 && (
         <>
           <h1>Review & Submit</h1>
+           <div className="review-box">
+    <p><strong>Name:</strong> {form.firstName} {form.lastName}</p>
+    <p><strong>Qualification:</strong> {form.qualification}</p>
+    <p><strong>Specialisation:</strong> {form.specialisation}</p>
+    <p><strong>Medical Association Member:</strong> {form.association}</p>
+    <p><strong>Email:</strong> {form.email}</p>
+    <p><strong>Phone:</strong> {form.phone}</p>
+    <p><strong>Address:</strong> {form.address}</p>
+    <p><strong>City:</strong> {form.city}</p>
+    <p><strong>State:</strong> {form.state}</p>
+    <p><strong>Country:</strong> {form.country}</p>
+    <p><strong>Date of Birth:</strong> {form.dob}</p>
+    <p><strong>ID Proof:</strong> {file ? file.name : "Not uploaded"}</p>
+  </div>
           <div className="buttons-row">
                     <button type="button" onClick={handlePrevious} className="btn-primary">
   <span style={{ display: 'inline-block', transform: 'rotate(180deg)' }}>➔</span> PREVIOUS
@@ -449,6 +463,7 @@ export default function DoctorRegistrationForm() {
           </div>
         </>
       )}
+      
     </div>
   );
 }
