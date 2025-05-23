@@ -13,7 +13,9 @@ const cards = [
 export default function DashboardCards() {
   const navigate = useNavigate();
   const [selectedIndex, setSelectedIndex] = useState(null);
-
+const handleBack = () => {
+    setSelectedIndex(null); // Go back to cards
+  };
   return (
     <div className="dashboard-cards">
       {selectedIndex === null ? (
@@ -37,7 +39,7 @@ export default function DashboardCards() {
 
         ))
       ) : (
-        <PatientDetails/>
+        <PatientDetails onBack={handleBack} selectedindex={selectedIndex}/>
       )}
     </div>
   );

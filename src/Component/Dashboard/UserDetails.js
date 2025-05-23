@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./userDetails.css";
-
-export default function PatientDetails() {
+import Header from "../Header/Header.js/Header";
+export default function PatientDetails({ onBack,selectedindex }) {
   const [dataSent, setDataSent] = useState([]);
-
   useEffect(() => {
     fetchData();
   }, []);
+  const title=["New Appointments","Approved Appointments","Cancelled Appointments","Total Appointments"]
+  const api=["https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/pending",
+    "https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/approved",
+    "https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/denied",
+  "https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.appp/api/appointments/doctor/8/all"]
  const token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYXJsZWVua2F1cjY1QGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfRE9DVE9SIl0sImlhdCI6MTc0ODAwOTAyNX0.pjgc3GWeZRCbG3clFg2sLar3XopNrJnvjeH2Abv6V-M"
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://767e-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/pending",
+        api[selectedindex],
         {
           method: "GET",
           headers: {
@@ -35,12 +39,14 @@ export default function PatientDetails() {
   };
 
   if (!dataSent || dataSent.length === 0) {
-    return <div>No pending patient data found.</div>;
+    return <div className="container">
+      <Header title={title[selectedindex]} onBack={onBack}/>
+      No pending patient data found.</div>;
   }
    const approve=async(id)=>
    {
     try {
-      const response = await fetch(`https://767e-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/confirm/${id}`, {
+      const response = await fetch(`https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/confirm/${id}`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,  // <-- Add this line
@@ -89,6 +95,7 @@ try {
 
   return (
     <div className="container">
+      <Header title={title[selectedindex]} onBack={onBack} />
       <div className="head">
         <h1>Patient Details</h1>
       </div>
@@ -116,14 +123,16 @@ try {
               <p><strong>Time:</strong> {patient.time}</p>
             </div>
           </div>
-
-          <div className="action-buttons">
+{selectedindex===0&&(
+<div className="action-buttons">
            <button className="approve-btn" onClick={()=>approve(patient.id)}>Approve</button>
 
             <button className="disapprove-btn" >Disapprove</button>
             <button className="done-btn" onClick={()=>done(patient.id)}>Checked</button>
           </div>
-        </div>
+        
+)}
+       </div>   
       ))}
     </div>
     </div>

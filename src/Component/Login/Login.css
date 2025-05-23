@@ -2,11 +2,13 @@
   display: flex;
   height: 100vh;
   font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to left,  #ece7ed,#fefcfe);
+  color: #731981;
 }
 
 .login-left {
   flex: 1;
-  background: #f8f9fa;
+  /* background: #f8f9fa; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +21,7 @@
 
 .login-right {
   flex: 1;
-  background: #ffffff;
+  /* background: #ffffff; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +34,7 @@
 }
 
 .hospital-name {
-  color: #1b8eb7;
+  color: #731981;
   margin-bottom: 0;
 }
 
@@ -43,7 +45,7 @@
 }
 
 .login-subtext {
-  color: #666;
+  color: #731981;
   margin-bottom: 1rem;
 }
 
@@ -71,14 +73,14 @@
 }
 
 .help-link {
-  color: #1b8eb7;
+  color:#731981;
   text-decoration: none;
 }
 
 .login-btn {
   width: 100%;
   padding: 0.7rem;
-  background-color: #1b8eb7;
+  background-color: #731981;
   color: white;
   border: none;
   border-radius: 5px;

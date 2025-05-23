@@ -52,7 +52,7 @@ const handleSubmit = async (e) => {
   return (
     <div className="login-wrapper">
       <div className="login-left">
-        <img src='/Images/doctor.jpg' alt="Doctors" className="login-illustration" />
+        <img src='/Images/doctor.png' alt="Doctors" className="login-illustration" />
       </div>
       <div className="login-right">
         <div className="login-form-container">
@@ -86,7 +86,7 @@ const handleSubmit = async (e) => {
               <label>
                 <input type="checkbox" /> Remember Me
               </label>
-              <a href="#" className="help-link">Need Help?</a>
+              <a href="#" className="help-link">Forgot Password?</a>
             </div>
 
             <button type="submit" className="login-btn">Login</button>
