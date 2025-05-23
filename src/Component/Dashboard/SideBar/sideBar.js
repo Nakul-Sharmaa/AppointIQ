@@ -9,7 +9,7 @@ export default function Sidebar() {
       <ul className='profile-ul'>
         <li>📊 Dashboard</li>
         <li>📅 Appointment</li>
-        <li>🔍 Search</li>
+        <li>🕒 Availability</li>
         <li>📁 Report</li>
       </ul>
     </div>

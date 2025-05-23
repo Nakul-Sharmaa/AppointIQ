@@ -92,13 +92,35 @@ try {
     alert("Failed to submit registration. Please try again.");
   }
   }
+  const deny=async(id)=>
+  {
+try {
+    const response = await fetch(
+      `https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/deny/${id}?isDone=true`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,  // <-- Add this line
+          "Content-Type": "application/json", // If sending JSON data (optional here if no body)
+        },
+      }
+    );
 
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result);
+    alert("Appointment diapproved!");
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Failed to submit registration. Please try again.");
+  }
+  }
   return (
     <div className="container">
       <Header title={title[selectedindex]} onBack={onBack} />
-      <div className="head">
-        <h1>Patient Details</h1>
-      </div>
      <div className="details-scroll-container">
       {dataSent.map((patient, index) => (
         <div className="details" key={index}>
@@ -127,7 +149,7 @@ try {
 <div className="action-buttons">
            <button className="approve-btn" onClick={()=>approve(patient.id)}>Approve</button>
 
-            <button className="disapprove-btn" >Disapprove</button>
+            <button className="disapprove-btn" onClick={()=>deny(patient.id)}>Disapprove</button>
             <button className="done-btn" onClick={()=>done(patient.id)}>Checked</button>
           </div>
         
