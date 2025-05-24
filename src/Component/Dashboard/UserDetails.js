@@ -6,6 +6,7 @@ export default function PatientDetails({ onBack,selectedindex }) {
   useEffect(() => {
     fetchData();
   }, []);
+  const data0=["No pending patient data found.","No approved patient data found.","No cancelled patient data found","No total patient data found."]
   const title=["New Appointments","Approved Appointments","Cancelled Appointments","Total Appointments"]
   const api=["https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/pending",
     "https://49d5-2409-40d1-88-9031-6d86-8eda-c27c-e0e2.ngrok-free.app/api/appointments/doctor/8/approved",
@@ -41,7 +42,12 @@ export default function PatientDetails({ onBack,selectedindex }) {
   if (!dataSent || dataSent.length === 0) {
     return <div className="container">
       <Header title={title[selectedindex]} onBack={onBack}/>
-      No pending patient data found.</div>;
+        <img
+          src="/Images/noresult.png"
+          alt="signup"
+          className="image"
+        />
+      <h4 className="h4">{data0[selectedindex]}</h4></div>;
   }
    const approve=async(id)=>
    {

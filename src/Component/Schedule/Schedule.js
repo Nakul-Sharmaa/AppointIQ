@@ -14,7 +14,8 @@ export default function SetAvailability() {
   return (
     <div className="set-availability">
       <h2>Set Your Availability</h2>
-      <form onSubmit={handleSubmit}>
+      <div className='formava'>
+        <form onSubmit={handleSubmit}>
         <label>
           Day:
           <select value={day} onChange={(e) => setDay(e.target.value)}>
@@ -30,6 +31,7 @@ export default function SetAvailability() {
         </label>
         <button type="submit">Save Availability</button>
       </form>
+      </div>
     </div>
   );
 }
