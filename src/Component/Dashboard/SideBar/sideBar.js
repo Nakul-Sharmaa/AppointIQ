@@ -1,16 +1,17 @@
 import React from 'react';
 import './Sidebar.css';
-
-export default function Sidebar() {
+ const sideBarItems=["📊 Dashboard","📅 Appointment","🕒 Availability","🏥 Prescription"]
+export default function Sidebar( {setSelectedIndex}) {
   return (
     <div className="sidebar">
       <h2 className="logo">DAMS</h2>
       <div className="profile-icon">👤</div>
       <ul className='profile-ul'>
-        <li>📊 Dashboard</li>
-        <li>📅 Appointment</li>
-        <li>🕒 Availability</li>
-        <li>📁 Report</li>
+     {sideBarItems.map((item, index) => (
+          <li key={index} onClick={() => setSelectedIndex(index)}>
+            {item}
+          </li>
+        ))}
       </ul>
     </div>
   );
